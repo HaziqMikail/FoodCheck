@@ -1,0 +1,989 @@
+[
+  {
+    "canonical_name": "Milk",
+    "aliases": [
+      "Susu",
+      "Susu Lembu",
+      "Cow's Milk",
+      "Milk Solids",
+      "Pepejal Susu",
+      "Whey",
+      "Susu Wei",
+      "Whey Powder",
+      "Serbuk Wei",
+      "Casein",
+      "Kasein",
+      "Sodium Caseinate",
+      "Natrium Kaseinat",
+      "Lactose",
+      "Laktosa",
+      "Skimmed Milk Powder",
+      "Serbuk Susu Skim",
+      "Full Cream Milk Powder",
+      "Serbuk Susu Penuh Krim",
+      "Milk Fat",
+      "Lemak Susu",
+      "Butter",
+      "Mentega",
+      "Ghee",
+      "Minyak Sapi",
+      "Cheese",
+      "Keju"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "dairy",
+      "milk"
+    ],
+    "health_risk_tags": [
+      "lactose_intolerance",
+      "milk_allergy"
+    ]
+  },
+  {
+    "canonical_name": "Peanut",
+    "aliases": [
+      "Kacang Tanah",
+      "Groundnut",
+      "Peanut Flour",
+      "Tepung Kacang Tanah",
+      "Peanut Oil",
+      "Minyak Kacang Tanah",
+      "Arachis Oil",
+      "Arachis Hypogaea"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "peanuts"
+    ],
+    "health_risk_tags": [
+      "severe_anaphylaxis",
+      "peanut_allergy"
+    ]
+  },
+  {
+    "canonical_name": "Tree Nuts",
+    "aliases": [
+      "Kacang Pohon",
+      "Almond",
+      "Badam",
+      "Cashew",
+      "Kacang Gajus",
+      "Walnut",
+      "Kacang Walnat",
+      "Hazelnut",
+      "Kacang Hazel",
+      "Pistachio",
+      "Kacang Pistachio",
+      "Macadamia",
+      "Kacang Macadamia",
+      "Pecan",
+      "Kacang Pekan",
+      "Brazil Nut",
+      "Kacang Brazil"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "tree_nuts"
+    ],
+    "health_risk_tags": [
+      "severe_anaphylaxis",
+      "tree_nut_allergy"
+    ]
+  },
+  {
+    "canonical_name": "Soybean",
+    "aliases": [
+      "Kacang Soya",
+      "Soy",
+      "Soya",
+      "Soy Lecithin",
+      "Lesitin Soya",
+      "Soy Protein",
+      "Protein Soya",
+      "Soybean Oil",
+      "Minyak Kacang Soya",
+      "Textured Vegetable Protein",
+      "TVP",
+      "Protein Tumbuhan Bertekstur",
+      "Soy Flour",
+      "Tepung Soya"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "soy"
+    ],
+    "health_risk_tags": [
+      "soy_allergy"
+    ]
+  },
+  {
+    "canonical_name": "Wheat Gluten",
+    "aliases": [
+      "Gluten Gandum",
+      "Wheat",
+      "Gandum",
+      "Gluten",
+      "Barley",
+      "Barli",
+      "Rye",
+      "Rai",
+      "Malt",
+      "Malt Extract",
+      "Ekstrak Malt",
+      "Wheat Flour",
+      "Tepung Gandum",
+      "Atta",
+      "Tepung Atta",
+      "Semolina",
+      "Sujji"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "gluten",
+      "wheat"
+    ],
+    "health_risk_tags": [
+      "celiac_disease",
+      "wheat_allergy",
+      "gluten_sensitivity"
+    ]
+  },
+  {
+    "canonical_name": "Egg",
+    "aliases": [
+      "Telur",
+      "Egg Yolk",
+      "Kuning Telur",
+      "Egg White",
+      "Putih Telur",
+      "Egg Powder",
+      "Serbuk Telur",
+      "Albumin",
+      "Albumen",
+      "Lysozyme",
+      "Lisozim",
+      "Ovalbumin"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "egg"
+    ],
+    "health_risk_tags": [
+      "egg_allergy"
+    ]
+  },
+  {
+    "canonical_name": "Fish",
+    "aliases": [
+      "Ikan",
+      "Fish Sauce",
+      "Sos Ikan",
+      "Fish Extract",
+      "Ekstrak Ikan",
+      "Anchovy",
+      "Ikan Bilis",
+      "Gelatin (Fish)",
+      "Gelatin Ikan",
+      "Surimi"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "fish"
+    ],
+    "health_risk_tags": [
+      "fish_allergy",
+      "severe_anaphylaxis"
+    ]
+  },
+  {
+    "canonical_name": "Crustacean Shellfish",
+    "aliases": [
+      "Kerang-kerangan",
+      "Krustasea",
+      "Shrimp",
+      "Udang",
+      "Prawn",
+      "Udang Galah",
+      "Crab",
+      "Ketam",
+      "Lobster",
+      "Udang Karah",
+      "Shrimp Paste",
+      "Belacan",
+      "Cencaluk",
+      "Oyster Sauce",
+      "Sos Tiram"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "shellfish"
+    ],
+    "health_risk_tags": [
+      "shellfish_allergy",
+      "severe_anaphylaxis"
+    ]
+  },
+  {
+    "canonical_name": "Sesame",
+    "aliases": [
+      "Bijiran Bijan",
+      "Bijan",
+      "Sesame Seed",
+      "Biji Bijan",
+      "Sesame Oil",
+      "Minyak Bijan",
+      "Tahini",
+      "Goma"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "sesame"
+    ],
+    "health_risk_tags": [
+      "sesame_allergy"
+    ]
+  },
+  {
+    "canonical_name": "Mustard",
+    "aliases": [
+      "Sawi",
+      "Mustard Seed",
+      "Biji Sawi",
+      "Mustard Powder",
+      "Serbuk Sawi",
+      "Minyak Sawi"
+    ],
+    "category": "allergen",
+    "associated_allergens": [
+      "mustard"
+    ],
+    "health_risk_tags": [
+      "mustard_allergy"
+    ]
+  },
+  {
+    "canonical_name": "Tartrazine",
+    "aliases": [
+      "E102",
+      "Yellow 5",
+      "Kuning 5",
+      "CI 19140",
+      "Pewarna E102"
+    ],
+    "category": "colorant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "hyperactivity_in_children",
+      "asthma_trigger",
+      "hives"
+    ]
+  },
+  {
+    "canonical_name": "Sunset Yellow FCF",
+    "aliases": [
+      "E110",
+      "Yellow 6",
+      "Kuning 6",
+      "Orange Yellow S",
+      "CI 15985",
+      "Pewarna E110"
+    ],
+    "category": "colorant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "hyperactivity_in_children",
+      "allergic_reaction"
+    ]
+  },
+  {
+    "canonical_name": "Allura Red AC",
+    "aliases": [
+      "E129",
+      "Red 40",
+      "Merah 40",
+      "CI 16035",
+      "Pewarna E129"
+    ],
+    "category": "colorant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "hyperactivity_in_children",
+      "sensitivity_alert"
+    ]
+  },
+  {
+    "canonical_name": "Brilliant Blue FCF",
+    "aliases": [
+      "E133",
+      "Blue 1",
+      "Biru 1",
+      "CI 42090",
+      "Pewarna E133"
+    ],
+    "category": "colorant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "monitored_additive"
+    ]
+  },
+  {
+    "canonical_name": "Titanium Dioxide",
+    "aliases": [
+      "E171",
+      "Titanium Oksida",
+      "CI 77891",
+      "Pewarna Putih E171"
+    ],
+    "category": "colorant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "genotoxicity_risk",
+      "banned_in_eu"
+    ]
+  },
+  {
+    "canonical_name": "Caramel Color",
+    "aliases": [
+      "E150a",
+      "E150b",
+      "E150c",
+      "E150d",
+      "Warna Karamel",
+      "Pewarna Karamel",
+      "Caramel IV"
+    ],
+    "category": "colorant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "generally_safe",
+      "moderate_processing"
+    ]
+  },
+  {
+    "canonical_name": "Cochineal / Carmine",
+    "aliases": [
+      "E120",
+      "Karmin",
+      "Ekstrak Kokineal",
+      "Natural Red 4",
+      "CI 75470"
+    ],
+    "category": "colorant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "insect_derived",
+      "non_vegan",
+      "severe_allergic_reaction"
+    ]
+  },
+  {
+    "canonical_name": "Erythrosine",
+    "aliases": [
+      "E127",
+      "Red 3",
+      "Merah 3",
+      "CI 45430"
+    ],
+    "category": "colorant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "restricted_additive",
+      "thyroid_disruption_risk"
+    ]
+  },
+  {
+    "canonical_name": "Sodium Benzoate",
+    "aliases": [
+      "E211",
+      "Natrium Benzoat",
+      "Pengawet E211",
+      "Benzoate of Soda"
+    ],
+    "category": "preservative",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "benzene_formation_risk_with_vitamin_c",
+      "hyperactivity_trigger"
+    ]
+  },
+  {
+    "canonical_name": "Benzoic Acid",
+    "aliases": [
+      "E210",
+      "Asid Benzoik",
+      "Pengawet E210"
+    ],
+    "category": "preservative",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "skin_irritation",
+      "asthma_trigger"
+    ]
+  },
+  {
+    "canonical_name": "Potassium Sorbate",
+    "aliases": [
+      "E202",
+      "Kalium Sorbat",
+      "Pengawet E202"
+    ],
+    "category": "preservative",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "generally_safe"
+    ]
+  },
+  {
+    "canonical_name": "Sorbic Acid",
+    "aliases": [
+      "E200",
+      "Asid Sorbik",
+      "Pengawet E200"
+    ],
+    "category": "preservative",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "generally_safe"
+    ]
+  },
+  {
+    "canonical_name": "Sulphur Dioxide",
+    "aliases": [
+      "E220",
+      "Sulfur Dioksida",
+      "Pengawet E220",
+      "Sulfite",
+      "Sulfit"
+    ],
+    "category": "preservative",
+    "associated_allergens": [
+      "sulfites"
+    ],
+    "health_risk_tags": [
+      "severe_asthma_trigger",
+      "respiratory_irritant"
+    ]
+  },
+  {
+    "canonical_name": "Sodium Metabisulphite",
+    "aliases": [
+      "E223",
+      "Natrium Metabisulfit",
+      "Sodium Metabisulfite",
+      "Pengawet E223"
+    ],
+    "category": "preservative",
+    "associated_allergens": [
+      "sulfites"
+    ],
+    "health_risk_tags": [
+      "severe_asthma_trigger",
+      "sulfite_allergy"
+    ]
+  },
+  {
+    "canonical_name": "Sodium Nitrite",
+    "aliases": [
+      "E250",
+      "Natrium Nitrit",
+      "Pengawet E250",
+      "Curing Salt",
+      "Garam Curing"
+    ],
+    "category": "preservative",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "carcinogenic_nitrosamines_risk",
+      "processed_meat_risk"
+    ]
+  },
+  {
+    "canonical_name": "Sodium Nitrate",
+    "aliases": [
+      "E251",
+      "Natrium Nitrat",
+      "Pengawet E251"
+    ],
+    "category": "preservative",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "carcinogenic_nitrosamines_risk"
+    ]
+  },
+  {
+    "canonical_name": "Propionic Acid",
+    "aliases": [
+      "E280",
+      "Asid Propionik"
+    ],
+    "category": "preservative",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "generally_safe"
+    ]
+  },
+  {
+    "canonical_name": "Calcium Propionate",
+    "aliases": [
+      "E282",
+      "Kalsium Propionat",
+      "Pengawet E282",
+      "Pengawal Kulat Roti"
+    ],
+    "category": "preservative",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "migraine_trigger",
+      "irritability_in_children"
+    ]
+  },
+  {
+    "canonical_name": "Monosodium Glutamate",
+    "aliases": [
+      "MSG",
+      "E621",
+      "Natrium Monoglutamat",
+      "Penambah Rasa E621",
+      "Serbuk Perasa",
+      "Micin",
+      "Ajinomoto",
+      "Monosodium L-Glutamate"
+    ],
+    "category": "flavor_enhancer",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "msg_symptom_complex",
+      "headache_trigger",
+      "high_sodium"
+    ]
+  },
+  {
+    "canonical_name": "Disodium Inosinate",
+    "aliases": [
+      "E631",
+      "Disodium 5'-Inosinate",
+      "Natrium Inosinat",
+      "Penambah Rasa E631"
+    ],
+    "category": "flavor_enhancer",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "gout_warning",
+      "high_purine"
+    ]
+  },
+  {
+    "canonical_name": "Disodium Guanylate",
+    "aliases": [
+      "E627",
+      "Disodium 5'-Guanylate",
+      "Natrium Guanilat",
+      "Penambah Rasa E627"
+    ],
+    "category": "flavor_enhancer",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "gout_warning",
+      "high_purine"
+    ]
+  },
+  {
+    "canonical_name": "Disodium 5'-Ribonucleotides",
+    "aliases": [
+      "E635",
+      "Natrium Ribonukleotida",
+      "I+G",
+      "Penambah Rasa E635"
+    ],
+    "category": "flavor_enhancer",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "gout_warning",
+      "skin_rash_risk"
+    ]
+  },
+  {
+    "canonical_name": "Yeast Extract",
+    "aliases": [
+      "Ekstrak Yis",
+      "Autolyzed Yeast Extract",
+      "Ekstrak Yis Autolisis",
+      "Hydrolyzed Yeast"
+    ],
+    "category": "flavor_enhancer",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "natural_msg_source",
+      "migraine_trigger"
+    ]
+  },
+  {
+    "canonical_name": "Aspartame",
+    "aliases": [
+      "E951",
+      "Aspartam",
+      "Pemanis E951",
+      "NutraSweet",
+      "Equal"
+    ],
+    "category": "sweetener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "contains_phenylalanine",
+      "pku_warning",
+      "artificial_sweetener"
+    ]
+  },
+  {
+    "canonical_name": "Sucralose",
+    "aliases": [
+      "E955",
+      "Sukralosa",
+      "Pemanis E955",
+      "Splenda"
+    ],
+    "category": "sweetener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "gut_microbiome_disruption",
+      "artificial_sweetener"
+    ]
+  },
+  {
+    "canonical_name": "Acesulfame Potassium",
+    "aliases": [
+      "E950",
+      "Ace-K",
+      "Acesulfame K",
+      "Akesulfam Kalium",
+      "Pemanis E950"
+    ],
+    "category": "sweetener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "artificial_sweetener"
+    ]
+  },
+  {
+    "canonical_name": "Saccharin",
+    "aliases": [
+      "E954",
+      "Sakarin",
+      "Sodium Saccharin",
+      "Natrium Sakarin",
+      "Pemanis E954"
+    ],
+    "category": "sweetener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "artificial_sweetener",
+      "bitter_aftertaste"
+    ]
+  },
+  {
+    "canonical_name": "High Fructose Corn Syrup",
+    "aliases": [
+      "HFCS",
+      "Sirap Jagung Tinggi Fruktosa",
+      "Sirap Fruktosa",
+      "Glucose-Fructose Syrup",
+      "Sirap Glukosa-Fruktosa"
+    ],
+    "category": "sweetener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "high_glycemic_index",
+      "fatty_liver_risk",
+      "diabetes_risk",
+      "obesity_risk"
+    ]
+  },
+  {
+    "canonical_name": "Sorbitol",
+    "aliases": [
+      "E420",
+      "Pemanis E420",
+      "Sirap Sorbitol"
+    ],
+    "category": "sweetener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "sugar_alcohol",
+      "laxative_effect",
+      "bloating_risk"
+    ]
+  },
+  {
+    "canonical_name": "Maltitol",
+    "aliases": [
+      "E965",
+      "Pemanis E965",
+      "Sirap Maltitol"
+    ],
+    "category": "sweetener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "sugar_alcohol",
+      "blood_sugar_spike",
+      "laxative_effect"
+    ]
+  },
+  {
+    "canonical_name": "Erythritol",
+    "aliases": [
+      "E968",
+      "Eritritol",
+      "Pemanis E968"
+    ],
+    "category": "sweetener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "sugar_alcohol",
+      "cardiovascular_event_study_monitored"
+    ]
+  },
+  {
+    "canonical_name": "Butylated Hydroxyanisole",
+    "aliases": [
+      "BHA",
+      "E320",
+      "Antioksidan E320"
+    ],
+    "category": "antioxidant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "possible_human_carcinogen",
+      "endocrine_disruptor_risk"
+    ]
+  },
+  {
+    "canonical_name": "Butylated Hydroxytoluene",
+    "aliases": [
+      "BHT",
+      "E321",
+      "Antioksidan E321"
+    ],
+    "category": "antioxidant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "possible_carcinogen",
+      "toxicological_review"
+    ]
+  },
+  {
+    "canonical_name": "Propyl Gallate",
+    "aliases": [
+      "E310",
+      "Propil Galat",
+      "Antioksidan E310"
+    ],
+    "category": "antioxidant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "stomach_irritation",
+      "allergic_reaction"
+    ]
+  },
+  {
+    "canonical_name": "Ascorbic Acid",
+    "aliases": [
+      "E300",
+      "Asid Askorbik",
+      "Vitamin C",
+      "Antioksidan E300"
+    ],
+    "category": "antioxidant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "beneficial_nutrient",
+      "generally_safe"
+    ]
+  },
+  {
+    "canonical_name": "Alpha-Tocopherol",
+    "aliases": [
+      "E307",
+      "Vitamin E",
+      "Alfa-Tokoferol",
+      "Antioksidan E307"
+    ],
+    "category": "antioxidant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "beneficial_nutrient",
+      "generally_safe"
+    ]
+  },
+  {
+    "canonical_name": "Polysorbate 80",
+    "aliases": [
+      "E433",
+      "Polisorbat 80",
+      "Polyoxyethylene Sorbitan Monooleate",
+      "Pengemulsi E433"
+    ],
+    "category": "emulsifier",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "gut_mucus_barrier_disruption",
+      "gut_inflammation_risk"
+    ]
+  },
+  {
+    "canonical_name": "Carrageenan",
+    "aliases": [
+      "E407",
+      "Karagenan",
+      "Penstabil E407"
+    ],
+    "category": "thickener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "gastrointestinal_inflammation",
+      "bloating_trigger"
+    ]
+  },
+  {
+    "canonical_name": "Xanthan Gum",
+    "aliases": [
+      "E415",
+      "Gam Xantan",
+      "Gum Xanthan",
+      "Penstabil E415"
+    ],
+    "category": "thickener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "generally_safe",
+      "mild_digestive_gas"
+    ]
+  },
+  {
+    "canonical_name": "Guar Gum",
+    "aliases": [
+      "E412",
+      "Gam Guar",
+      "Gum Guar",
+      "Penstabil E412"
+    ],
+    "category": "thickener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "generally_safe"
+    ]
+  },
+  {
+    "canonical_name": "Sodium Carboxymethyl Cellulose",
+    "aliases": [
+      "E466",
+      "CMC",
+      "Cellulose Gum",
+      "Gam Selulosa",
+      "Natrium Karboksimetil Selulosa"
+    ],
+    "category": "thickener",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "gut_microbiome_alteration"
+    ]
+  },
+  {
+    "canonical_name": "Hydrogenated Vegetable Oil",
+    "aliases": [
+      "Minyak Tumbuhan Terhidrogenasi",
+      "Minyak Terhidrogen Sepenuhnya",
+      "Partially Hydrogenated Oil",
+      "Minyak Terhidrogen Separa",
+      "Trans Fat",
+      "Lemak Trans",
+      "Vegetable Shortening",
+      "Sutening Tumbuhan"
+    ],
+    "category": "fat_and_oil",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "trans_fat",
+      "high_cardiovascular_risk",
+      "raises_ldl_cholesterol"
+    ]
+  },
+  {
+    "canonical_name": "Palm Oil",
+    "aliases": [
+      "Minyak Kelapa Sawit",
+      "Minyak Sawit",
+      "Palm Olein",
+      "Olein Sawit",
+      "Palm Stearin",
+      "Stearin Sawit",
+      "Hydrogenated Palm Oil"
+    ],
+    "category": "fat_and_oil",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "high_saturated_fat",
+      "cardiovascular_health_caution"
+    ]
+  },
+  {
+    "canonical_name": "Potassium Bromate",
+    "aliases": [
+      "Kalium Bromat",
+      "E924",
+      "Dough Conditioner",
+      "Pengkondisi Doh"
+    ],
+    "category": "processing_agent",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "carcinogenic_risk",
+      "banned_in_many_countries"
+    ]
+  },
+  {
+    "canonical_name": "Sodium Phosphate",
+    "aliases": [
+      "E339",
+      "Natrium Fosfat",
+      "Disodium Phosphate",
+      "Trisodium Phosphate",
+      "Pengawal Keasidan E339"
+    ],
+    "category": "acidity_regulator",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "high_phosphorus_load",
+      "kidney_disease_caution"
+    ]
+  },
+  {
+    "canonical_name": "Phosphoric Acid",
+    "aliases": [
+      "E338",
+      "Asid Fosforik",
+      "Pengawal Keasidan E338"
+    ],
+    "category": "acidity_regulator",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "bone_density_loss_risk",
+      "tooth_enamel_erosion"
+    ]
+  },
+  {
+    "canonical_name": "Maltodextrin",
+    "aliases": [
+      "Maltodekstrin",
+      "Corn Maltodextrin",
+      "Maltodekstrin Jagung"
+    ],
+    "category": "carbohydrate_additive",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "very_high_glycemic_index",
+      "blood_sugar_spike",
+      "diabetes_caution"
+    ]
+  }
+]
