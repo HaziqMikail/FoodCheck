@@ -1,24 +1,26 @@
 import React from 'react';
-import { ShieldAlert, Sliders, History } from 'lucide-react';
+import { Sliders, History } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 export default function Header({ onOpenSettings, onToggleHistory, showHistory, profile }) {
   const activeRestrictionsCount = 
     (profile?.allergies?.length || 0) + 
-    (profile?.health_goals?.length || 0) + 
+    (profile?.health_goals?.filter(g => g !== 'none')?.length || 0) + 
     (profile?.dietary_restrictions?.length || 0) + 
-    (profile?.flagged_additives?.length || 0);
+    (profile?.custom_condition?.trim() ? 1 : 0);
 
   return (
     <header className="app-header">
       <div className="brand-wrapper">
-        <div className="brand-icon-box">
-          <ShieldAlert size={22} color="#FFFFFF" />
+        <div className="brand-logo-container">
+          <img src={logoImg} alt="SafeBite Logo" className="brand-logo-img" />
         </div>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <span className="brand-title">FoodCheck</span>
+        <div className="brand-text-block">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span className="brand-title">SafeBite</span>
             <span className="brand-badge">Stateless</span>
           </div>
+          <span className="brand-subtext">Food Allergen & Health Scanner</span>
         </div>
       </div>
 

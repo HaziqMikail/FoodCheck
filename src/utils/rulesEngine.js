@@ -146,6 +146,32 @@ export function analyzeIngredients(rawText, userProfile) {
     }
   }
 
+  // 5. Check Custom User Conditions / Specific Allergens
+  if (userProfile?.custom_condition?.trim()) {
+    const customTerms = userProfile.custom_condition
+      .split(/[,;\n]+/)
+      .map(t => t.trim().toLowerCase())
+      .filter(t => t.length >= 2);
+
+    for (const term of customTerms) {
+      const escaped = escapeRegExp(term);
+      const regex = new RegExp(`(?:^|[\\s,;:.()\\[\\]\\/\\-])${escaped}(?:$|[\\s,;:.()\\[\\]\\/\\-])`, 'i');
+      if (regex.test(normalizedText)) {
+        // Prevent duplicate match if already added
+        if (!matches.some(m => m.canonical.toLowerCase() === term)) {
+          matches.push({
+            ingredient: term,
+            canonical: term.charAt(0).toUpperCase() + term.slice(1),
+            type: 'custom_condition',
+            severity: 'danger',
+            title: `Custom Condition Alert: ${term}`,
+            explanation: `Matches your specified custom condition / ingredient watch: "${term}".`
+          });
+        }
+      }
+    }
+  }
+
   // Determine final verdict
   let verdict = 'safe';
   let summary = 'Zero allergens or restricted ingredients found matching your profile.';

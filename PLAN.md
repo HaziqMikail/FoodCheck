@@ -1,7 +1,7 @@
-# 🥗 FoodCheck — Stateless Project Plan & Blueprint
+# 🥗 SafeBite — Stateless Project Plan & Blueprint
 
 ## Executive Summary
-**FoodCheck** is a cross-platform, mobile-first web application designed to instantly analyze packaged food ingredients and nutrition labels. By leveraging flexible input methods (mobile camera capture or laptop file upload), lightweight Optical Character Recognition (OCR), and a deterministic rules-based matching engine against user health profiles, FoodCheck flags allergens, dietary conflicts, and unwanted additives in real-time.
+**SafeBite** (formerly FoodCheck) is a cross-platform, responsive web application designed to instantly analyze packaged food ingredients and nutrition labels on both mobile and desktop screens. By leveraging flexible input methods (mobile camera capture or laptop file upload), lightweight text processing, and a deterministic rules-based matching engine against user health profiles, SafeBite flags allergens, dietary conflicts, and custom user-specified conditions in real-time.
 
 **Target Users:** Consumers with food allergies, strict dietary preferences (vegan, halal, celiac), or specific health conditions (diabetes, hypertension).  
 **Deployment Model:** 100% Free prototype tier on Vercel (completely stateless, zero database/auth infrastructure required).  
@@ -201,32 +201,37 @@ When analysis is triggered, the payload is completely self-contained:
 
 ---
 
-## 🚀 Part 4: Implementation Roadmap & Progress Tracker
+## 🚀 Part 4: Implementation Roadmap
 
-### Phase 1: Setup & Stateless Foundation (Status: COMPLETE ✅)
-- [x] Initialize React + Vite project with Clinical Fresh & Clean CSS design system.
-- [x] Bundle `ingredients_data.json` into static assets (`src/data/ingredients_data.json`) for zero-latency in-memory lookup.
-- [x] Implement `localStorage` profile & scan history manager (`src/utils/storage.js`).
+### Phase 1: Setup & Stateless Foundation (Week 1)
+- [x] Initialize Next.js / React repository with Tailwind CSS / Vanilla CSS.
+- [x] Bundle `ingredients_data.json` into static assets/utilities for zero-latency lookup.
+- [x] Build `useLocalStorage` hook and profile state manager.
 
-### Phase 2: Onboarding & Multi-Input Camera (Status: BASE COMPLETE ✅)
+### Phase 2: Onboarding & Multi-Input Camera (Week 2)
 - [x] Build onboarding modal asking *"What are your allergies or health goals?"* on first load.
 - [x] Save preferences directly into browser `localStorage`.
 - [x] Build mobile camera feed component (`navigator.mediaDevices.getUserMedia`).
 - [x] Implement drag-and-drop file upload zone for laptop users.
-- [x] Add quick-test ingredient preset buttons (Dairy, Peanuts, MSG/Sodium, Clean).
-- [ ] Optional: Integrate client-side OCR (Tesseract.js).
+- [x] Integrate OCR text extraction logic (Tesseract.js).
 
-### Phase 3: Stateless Rules Engine & Analysis (Status: COMPLETE ✅)
+### Phase 3: Stateless Rules Engine & Analysis (Week 3)
 - [x] Implement deterministic rule-matching logic (text normalization $\rightarrow$ alias search against `ingredients_data.json` $\rightarrow$ compare against `localStorage` profile).
-- [x] Provide local/stateless execution with zero database dependencies.
-- [x] Return structured verdict (🟢 Safe, 🟡 Warning, 🔴 Danger) with explanatory cards and itemized ingredient breakdown.
+- [x] Provide local/stateless execution (optionally exposed via `/api/analyze`).
+- [x] Return structured verdict (🟢 Safe, 🟡 Warning, 🔴 Danger) with explanatory cards.
 
-### Phase 4: UI Polish & Free Vercel Deployment (Status: IN PROGRESS ⏳)
-- [x] Implement Clinical Fresh & Clean theme (Teal `#0D9488`, Emerald `#10B981`, Amber `#F59E0B`, Crimson `#EF4444`).
-- [x] Add settings trigger to allow users to update their `localStorage` preferences anytime.
-- [x] Add local scan history drawer with recent verdicts.
-- [ ] Deploy prototype to Vercel.
-- [ ] Conduct mobile browser testing across Safari (iOS) and Chrome (Android).
+### Phase 4: UI Polish & Free Vercel Deployment (Week 4)
+- [x] Design clear result views with ingredient breakdown and reason tags.
+- [x] Add settings drawer to allow users to update their `localStorage` preferences anytime.
+- [x] Deploy prototype to Vercel (100% Free static/serverless tier).
+- [x] Conduct cross-platform testing (Mobile Safari, Chrome on Android, Desktop).
+
+### Phase 5: Computer Vision (CV) & Multimodal AI Integration (Completed)
+- [x] Implement HTML5 canvas video frame capture (`captureVideoFrame`).
+- [x] Implement image compression and downscaling to optimize payload speed.
+- [x] Build Multimodal AI Vision service with support for Google Gemini / OpenAI.
+- [x] Connect Live Camera "Snap & Scan" shutter button and file dropzone auto-extraction.
+- [x] Provide real-time AI extraction status feedback and editable ingredient verification box.
 
 ---
 
@@ -238,34 +243,41 @@ When analysis is triggered, the payload is completely self-contained:
 - **Accuracy:** >90% detection of critical allergens (peanuts, gluten, dairy) across English and bilingual (Malay) food labels.
 - **Cross-Platform:** Seamlessly functional on smartphone browsers and desktop laptops.
 
----
 
-## 🎨 Part 6: Theme Specifications
+## Theme
 
-### Theme Direction: "Clinical Fresh & Clean"
-**Vibe:** Modern, minimalist, health-focused, and high-contrast. It borrows the trustworthy cleanliness of a medical app combined with the fresh, approachable aesthetic of modern food tech.
+Theme Direction: "Clinical Fresh & Clean"
+Vibe: Modern, minimalist, health-focused, and high-contrast. It borrows the trustworthy cleanliness of a medical app combined with the fresh, approachable aesthetic of modern food tech.
 
-**Why it works:** In grocery stores, lighting can be harsh and users are scanning in a hurry. A clean, high-contrast palette ensures the critical safety alerts (Safe vs. Danger) pop instantly without causing visual fatigue.
+Why it works: In grocery stores, lighting can be harsh and users are scanning in a hurry. A clean, high-contrast palette ensures the critical safety alerts (Safe vs. Danger) pop instantly without causing visual fatigue.
 
-### Color Palette & Hex Codes
-1. **Base & Background Colors (Neutral Foundation)**
-   - **Primary Background (`#F9FAFB` - Cool Off-White):** Reduces eye strain compared to pure white and keeps the interface looking sleek and modern.
-   - **Surface / Card Background (`#FFFFFF` - Pure White):** Clean containers for displaying scanned ingredients and nutrition cards.
-   - **Text Main (`#111827` - Dark Slate / Charcoal):** High-contrast text for maximum legibility in bright supermarket lighting.
-   - **Text Muted (`#6B7280` - Cool Gray):** Used for secondary metadata, timestamps, and helper text.
+🎨 Color Palette & Hex Codes
+1. Base & Background Colors (Neutral Foundation)
+Primary Background (#F9FAFB - Cool Off-White): Reduces eye strain compared to pure white and keeps the interface looking sleek and modern.
 
-2. **Brand & Action Colors (Core Identity)**
-   - **Brand Primary (`#0D9488` - Teal / Emerald Mint):** Represents health, safety, and freshness. Used for main action buttons ("Scan Label", "Save Profile") and app headers.
-   - **Brand Hover / Active (`#0F766E` - Deep Teal):** A darker shade for button hover states and active tabs.
+Surface / Card Background (#FFFFFF - Pure White): Clean containers for displaying scanned ingredients and nutrition cards.
 
-3. **Safety & Verdict Indicators (The Most Important UI Colors)**
-   - 🟢 **Safe / Pass (`#10B981` - Emerald Green):** Instant visual cue indicating zero allergens or health conflicts detected. Background: `#ECFDF5`, Text: `#047857`.
-   - 🟡 **Warning / Moderate (`#F59E0B` - Amber / Warm Yellow):** Signals caution (e.g., moderate sodium, minor additive preferences). Background: `#FEF3C7`, Text: `#B45309`.
-   - 🔴 **Danger / Alert (`#EF4444` - Crimson Red):** High-priority visual alert for explicit allergen matches or severe health condition conflicts. Background: `#FEF2F2`, Text: `#B91C1C`.
+Text Main (#111827 - Dark Slate / Charcoal): High-contrast text for maximum legibility in bright supermarket lighting.
 
-### Quick UI Component Mapping
-- **App Header / Navigation:** Teal (`#0D9488`) with white text.
-- **Primary Scan Button:** Large rounded button in Teal (`#0D9488`) with camera icon and smooth hover effect.
-- **Result Banner (Safe):** Light green background (`#ECFDF5`) with emerald text (`#047857`) and a green check icon.
-- **Result Banner (Danger):** Light red background (`#FEF2F2`) with crimson text (`#B91C1C`) and warning icon highlighting the matched allergen.
-
+Text Muted (#6B7280 - Cool Gray): Used for secondary metadata, timestamps, and helper text.
+
+2. Brand & Action Colors (Core Identity)
+Brand Primary (#0D9488 - Teal / Emerald Mint): Represents health, safety, and freshness. Used for main action buttons ("Scan Label", "Save Profile") and app headers.
+
+Brand Hover / Active (#0F766E - Deep Teal): A darker shade for button hover states and active tabs.
+
+3. Safety & Verdict Indicators (The Most Important UI Colors)
+🟢 Safe / Pass (#10B981 - Emerald Green): Instant visual cue indicating zero allergens or health conflicts detected.
+
+🟡 Warning / Moderate (#F59E0B - Amber / Warm Yellow): Signals caution (e.g., moderate sodium, minor additive preferences, or unverified secondary ingredients).
+
+🔴 Danger / Alert (#EF4444 - Crimson Red): High-priority visual alert for explicit allergen matches or severe health condition conflicts.
+
+💡 Quick UI Component Mapping Example
+App Header / Navigation: Teal (#0D9488) with white text.
+
+Primary Scan Button: Large rounded button in Teal (#0D9488) with a camera icon.
+
+Result Banner (Safe): Light green background (#ECFDF5) with emerald text (#047857) and a green check icon.
+
+Result Banner (Danger): Light red background (#FEF2F2) with crimson text (#B91C1C) and a warning icon highlighting the matched allergen.
