@@ -985,5 +985,261 @@
       "blood_sugar_spike",
       "diabetes_caution"
     ]
+  },
+  {
+    "canonical_name": "Pork",
+    "aliases": [
+      "Daging Babi",
+      "Babi",
+      "Pork Meat",
+      "Pork Extract",
+      "Ekstrak Babi",
+      "Pork Fat",
+      "Lemak Babi",
+      "Pork Rinds",
+      "Kulit Babi",
+      "Pork Flavoring",
+      "Perisa Babi",
+      "Pork Broth",
+      "Kaldu Babi",
+      "Pork Stock",
+      "Pork Sausage"
+    ],
+    "category": "meat",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "non_kosher",
+      "animal_derived"
+    ]
+  },
+  {
+    "canonical_name": "Gelatin",
+    "aliases": [
+      "Gelatin",
+      "Gelatine",
+      "Gelatin Babi",
+      "Pork Gelatin",
+      "Bovine Gelatin",
+      "Fish Gelatin",
+      "Gelatin Serbuk",
+      "Gelatin Powder",
+      "Hydrolyzed Gelatin",
+      "Gelatin Terhidrolisis"
+    ],
+    "category": "gelling_agent",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "animal_derived"
+    ]
+  },
+  {
+    "canonical_name": "Lard",
+    "aliases": [
+      "Lemak Babi",
+      "Minyak Babi",
+      "Pig Fat",
+      "Rendered Pork Fat",
+      "Shortening (Pork)",
+      "Animal Fat",
+      "Lemak Haiwan"
+    ],
+    "category": "fat",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "non_kosher",
+      "animal_derived",
+      "high_saturated_fat"
+    ]
+  },
+  {
+    "canonical_name": "Bacon",
+    "aliases": [
+      "Bacon Bits",
+      "Bacon Flavor",
+      "Perisa Bacon",
+      "Bacon Extract",
+      "Turkey Bacon",
+      "Beef Bacon",
+      "Smoked Bacon"
+    ],
+    "category": "meat",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "non_kosher",
+      "animal_derived",
+      "high_sodium"
+    ]
+  },
+  {
+    "canonical_name": "Ham",
+    "aliases": [
+      "Ham Extract",
+      "Ekstrak Ham",
+      "Ham Flavor",
+      "Perisa Ham",
+      "Smoked Ham",
+      "Cured Ham",
+      "Prosciutto",
+      "Parma Ham"
+    ],
+    "category": "meat",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "non_kosher",
+      "animal_derived",
+      "high_sodium"
+    ]
+  },
+  {
+    "canonical_name": "Pepsin",
+    "aliases": [
+      "Pepsin Enzyme",
+      "Enzim Pepsin",
+      "Porcine Pepsin"
+    ],
+    "category": "enzyme",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "animal_derived"
+    ]
+  },
+  {
+    "canonical_name": "Carmine",
+    "aliases": [
+      "E120",
+      "Cochineal",
+      "Cochineal Extract",
+      "Ekstrak Cochineal",
+      "Natural Red 4",
+      "Crimson Lake",
+      "Carminic Acid"
+    ],
+    "category": "colorant",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "animal_derived",
+      "insect_derived"
+    ]
+  },
+  {
+    "canonical_name": "Ethanol",
+    "aliases": [
+      "Alcohol",
+      "Alkohol",
+      "Ethyl Alcohol",
+      "Etanol",
+      "Wine",
+      "Wain",
+      "Beer",
+      "Bir",
+      "Rum",
+      "Brandy",
+      "Liquor",
+      "Liqueur",
+      "Cooking Wine",
+      "Wain Masakan",
+      "Rice Wine",
+      "Mirin",
+      "Sake"
+    ],
+    "category": "alcohol",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "alcohol",
+      "non_halal",
+      "intoxicant"
+    ]
+  },
+  {
+    "canonical_name": "Vanilla Extract",
+    "aliases": [
+      "Ekstrak Vanila",
+      "Pure Vanilla Extract",
+      "Vanilla Flavoring"
+    ],
+    "category": "flavoring",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "alcohol_trace",
+      "generally_safe"
+    ]
+  },
+  {
+    "canonical_name": "Rennet",
+    "aliases": [
+      "Animal Rennet",
+      "Rennet Enzyme",
+      "Enzim Rennet",
+      "Calf Rennet"
+    ],
+    "category": "enzyme",
+    "associated_allergens": [
+      "dairy"
+    ],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "animal_derived"
+    ]
+  },
+  {
+    "canonical_name": "Collagen",
+    "aliases": [
+      "Kolagen",
+      "Porcine Collagen",
+      "Bovine Collagen",
+      "Fish Collagen",
+      "Hydrolyzed Collagen",
+      "Kolagen Terhidrolisis"
+    ],
+    "category": "protein",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "animal_derived"
+    ]
+  },
+  {
+    "canonical_name": "Chorizo",
+    "aliases": [
+      "Chorizo Sausage",
+      "Spanish Sausage"
+    ],
+    "category": "meat",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "non_kosher",
+      "animal_derived"
+    ]
+  },
+  {
+    "canonical_name": "Salami",
+    "aliases": [
+      "Pepperoni",
+      "Salami Slice"
+    ],
+    "category": "meat",
+    "associated_allergens": [],
+    "health_risk_tags": [
+      "pork_derived",
+      "non_halal",
+      "non_kosher",
+      "animal_derived"
+    ]
   }
 ]

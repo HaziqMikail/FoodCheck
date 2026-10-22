@@ -81,7 +81,7 @@ export function analyzeIngredients(rawText, userProfile) {
       continue;
     }
 
-    if (userDietary.has('halal') && (healthRiskTags.includes('pork_derived') || healthRiskTags.includes('alcohol') || item.canonical_name.toLowerCase().includes('gelatin'))) {
+    if (userDietary.has('halal') && (healthRiskTags.includes('pork_derived') || healthRiskTags.includes('alcohol') || healthRiskTags.includes('non_halal') || item.canonical_name.toLowerCase().includes('gelatin') || item.canonical_name.toLowerCase().includes('lard'))) {
       matches.push({
         ingredient: matchedTerm,
         canonical: item.canonical_name,
@@ -89,6 +89,18 @@ export function analyzeIngredients(rawText, userProfile) {
         severity: 'danger',
         title: `Halal Warning: ${item.canonical_name}`,
         explanation: `"${matchedTerm}" may contain non-halal animal derivatives or alcohol.`
+      });
+      continue;
+    }
+
+    if (userDietary.has('kosher') && (healthRiskTags.includes('pork_derived') || healthRiskTags.includes('non_kosher'))) {
+      matches.push({
+        ingredient: matchedTerm,
+        canonical: item.canonical_name,
+        type: 'dietary',
+        severity: 'danger',
+        title: `Kosher Warning: ${item.canonical_name}`,
+        explanation: `"${matchedTerm}" contains non-kosher ingredients.`
       });
       continue;
     }
@@ -146,7 +158,57 @@ export function analyzeIngredients(rawText, userProfile) {
     }
   }
 
-  // 5. Check Custom User Conditions / Specific Allergens
+  // 5. Fallback Halal/Kosher keyword scan for common haram terms not in database
+  if (userDietary.has('halal') || userDietary.has('kosher')) {
+    const haramKeywords = [
+      { term: 'pork', label: 'Pork' },
+      { term: 'babi', label: 'Pork (Babi)' },
+      { term: 'lard', label: 'Lard' },
+      { term: 'ham', label: 'Ham' },
+      { term: 'bacon', label: 'Bacon' },
+      { term: 'gelatin', label: 'Gelatin' },
+      { term: 'gelatine', label: 'Gelatine' },
+      { term: 'pepperoni', label: 'Pepperoni' },
+      { term: 'salami', label: 'Salami' },
+      { term: 'chorizo', label: 'Chorizo' },
+      { term: 'prosciutto', label: 'Prosciutto' },
+      { term: 'pancetta', label: 'Pancetta' },
+      { term: 'porcine', label: 'Porcine-derived' },
+      { term: 'swine', label: 'Swine-derived' },
+      { term: 'pig', label: 'Pig-derived' },
+      { term: 'wine', label: 'Wine' },
+      { term: 'beer', label: 'Beer' },
+      { term: 'rum', label: 'Rum' },
+      { term: 'brandy', label: 'Brandy' },
+      { term: 'liquor', label: 'Liquor' },
+      { term: 'liqueur', label: 'Liqueur' },
+      { term: 'alcohol', label: 'Alcohol' },
+      { term: 'alkohol', label: 'Alcohol (Alkohol)' },
+      { term: 'ethanol', label: 'Ethanol' },
+      { term: 'mirin', label: 'Mirin' },
+      { term: 'sake', label: 'Sake' },
+    ];
+
+    for (const kw of haramKeywords) {
+      // Skip if already matched by database
+      if (matches.some(m => m.canonical.toLowerCase() === kw.label.toLowerCase() || m.ingredient.toLowerCase() === kw.term)) continue;
+
+      const escaped = escapeRegExp(kw.term);
+      const regex = new RegExp(`(?:^|[\\s,;:.()\\[\\]\\/\\-])${escaped}(?:$|[\\s,;:.()\\[\\]\\/\\-])`, 'i');
+      if (regex.test(normalizedText)) {
+        matches.push({
+          ingredient: kw.term,
+          canonical: kw.label,
+          type: 'dietary',
+          severity: 'danger',
+          title: `Halal Warning: ${kw.label}`,
+          explanation: `"${kw.term}" detected — potentially non-halal ingredient.`
+        });
+      }
+    }
+  }
+
+  // 6. Check Custom User Conditions / Specific Allergens
   if (userProfile?.custom_condition?.trim()) {
     const customTerms = userProfile.custom_condition
       .split(/[,;\n]+/)

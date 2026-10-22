@@ -1,8 +1,8 @@
 import React from 'react';
-import { Sliders, History } from 'lucide-react';
+import { Sliders } from 'lucide-react';
 import logoImg from '../assets/logo.png';
 
-export default function Header({ onOpenSettings, onToggleHistory, showHistory, profile }) {
+export default function Header({ onOpenSettings, profile }) {
   const activeRestrictionsCount = 
     (profile?.allergies?.length || 0) + 
     (profile?.health_goals?.filter(g => g !== 'none')?.length || 0) + 
@@ -24,25 +24,14 @@ export default function Header({ onOpenSettings, onToggleHistory, showHistory, p
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '8px' }}>
-        <button 
-          className="header-action-btn"
-          onClick={onToggleHistory}
-          title="View Scan History"
-          style={{ background: showHistory ? 'rgba(255,255,255,0.32)' : undefined }}
-        >
-          <History size={16} />
-        </button>
-
-        <button 
-          className="header-action-btn"
-          onClick={onOpenSettings}
-          title="Configure Health Profile"
-        >
-          <Sliders size={16} />
-          <span>Profile ({activeRestrictionsCount})</span>
-        </button>
-      </div>
+      <button 
+        className="header-action-btn"
+        onClick={onOpenSettings}
+        title="Configure Health Profile"
+      >
+        <Sliders size={16} />
+        <span>Profile ({activeRestrictionsCount})</span>
+      </button>
     </header>
   );
 }

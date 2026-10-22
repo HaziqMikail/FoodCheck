@@ -105,8 +105,6 @@ export default function App() {
     <div className="app-container">
       <Header 
         onOpenSettings={() => setShowOnboarding(true)}
-        onToggleHistory={() => setShowHistory(prev => !prev)}
-        showHistory={showHistory}
         profile={profile}
       />
 
@@ -188,7 +186,7 @@ export default function App() {
                 </div>
                 <h3 className="ready-scan-title">Ready for Your Next Label</h3>
                 <p className="ready-scan-desc">
-                  Choose a quick test preset on the left, scan with your camera, or upload a package photo to detect allergen risks instantly.
+                  Type or paste ingredients on the left, scan with your camera, or upload a package photo to detect allergen risks instantly.
                 </p>
                 <div className="ready-features-list">
                   <div className="ready-feature-item">

@@ -1,30 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Camera, UploadCloud, Edit3, Play, Square, Sparkles, RefreshCw, Aperture, AlertCircle, CheckCircle2, Zap, Key, X } from 'lucide-react';
+import { Camera, UploadCloud, Edit3, Play, Square, RefreshCw, Aperture, AlertCircle, CheckCircle2, Zap } from 'lucide-react';
 import { captureVideoFrame, fileToDataUrl } from '../utils/imageUtils';
-import { extractIngredientsFromImage, getActiveAiConfig, saveLocalApiKey } from '../utils/aiVision';
-
-const SAMPLE_PRESETS = [
-  {
-    name: 'Nestlé Susu Penuh Krim',
-    tag: 'Dairy Allergy Test',
-    text: 'Bahan-bahan: Pepejal Susu (Susu Lembu), Lemak Susu, Mengandungi Pengemulsi (Lesitin Soya) Sebagai Kondisioner Makanan Yang Dibenarkan. Mengandungi Alergen: Susu, Soya.'
-  },
-  {
-    name: 'Peanut Butter Granola Bar',
-    tag: 'Severe Nut Alert',
-    text: 'Ingredients: Whole grain rolled oats, roasted peanuts, cane sugar, peanut oil, sea salt, natural flavor, whey powder.'
-  },
-  {
-    name: 'Spicy Instant Ramen',
-    tag: 'Sodium & MSG Test',
-    text: 'Ingredients: Wheat flour, palm oil, salt, monosodium glutamate (E621), disodium inosinate, hydrolyzed soy protein, tartrazine (E102), sodium carbonate.'
-  },
-  {
-    name: 'Organic Fruit Bites',
-    tag: 'Safe / Clean Product',
-    text: 'Ingredients: Organic dried apples, organic strawberries, organic banana puree, organic lemon juice concentrate.'
-  }
-];
+import { extractIngredientsFromImage, getActiveAiConfig } from '../utils/aiVision';
 
 export default function ScannerSection({ onAnalyze, isAnalyzing, isModalOpen }) {
   const [activeTab, setActiveTab] = useState('text'); // 'camera' | 'upload' | 'text'
@@ -38,18 +15,10 @@ export default function ScannerSection({ onAnalyze, isAnalyzing, isModalOpen }) 
   const [aiError, setAiError] = useState('');
   const [aiSuccessBadge, setAiSuccessBadge] = useState('');
 
-  // In-app API key modal state
-  const [showKeyModal, setShowKeyModal] = useState(false);
-  const [providerChoice, setProviderChoice] = useState('gemini');
-  const [keyInput, setKeyInput] = useState('');
-  const [aiConfig, setAiConfig] = useState(getActiveAiConfig);
+  const [aiConfig] = useState(getActiveAiConfig);
 
   const videoRef = useRef(null);
   const streamRef = useRef(null);
-
-  const refreshAiConfig = () => {
-    setAiConfig(getActiveAiConfig());
-  };
 
   const startCamera = async () => {
     if (cameraActive || isStartingCamera) return;
@@ -185,43 +154,22 @@ export default function ScannerSection({ onAnalyze, isAnalyzing, isModalOpen }) 
   };
 
   const handleManualScan = () => {
-    if (!inputText.trim()) {
-      setInputText(SAMPLE_PRESETS[0].text);
-      onAnalyze(SAMPLE_PRESETS[0].text);
-    } else {
+    if (inputText.trim()) {
       onAnalyze(inputText);
     }
   };
 
-  const handleSaveApiKey = () => {
-    saveLocalApiKey(providerChoice, keyInput);
-    refreshAiConfig();
-    setShowKeyModal(false);
-    setKeyInput('');
-    setAiError('');
-  };
-
   return (
     <div className="scanner-card">
-      {/* Header bar with AI status badge and settings trigger */}
+      {/* Header bar with AI status badge */}
       <div className="scanner-top-bar">
         <span className="scanner-top-title">Ingredient Input & Vision Scanner</span>
-        <button 
-          type="button"
-          onClick={() => {
-            setKeyInput('');
-            setShowKeyModal(true);
-          }}
-          className={`ai-badge ${aiConfig.provider ? 'active' : 'idle'}`}
-          title="Click to view or set AI Vision API Key"
-        >
-          <Zap size={12} />
-          <span>
-            {aiConfig.provider 
-              ? `${aiConfig.provider === 'gemini' ? 'Gemini Flash' : 'OpenAI'} Active` 
-              : 'Add API Key'}
-          </span>
-        </button>
+        {aiConfig.provider && (
+          <div className="ai-badge active" style={{ cursor: 'default' }}>
+            <Zap size={12} />
+            <span>{aiConfig.provider === 'gemini' ? 'Gemini Flash Active' : 'OpenAI Active'}</span>
+          </div>
+        )}
       </div>
 
       {/* Mode Tabs */}
@@ -232,7 +180,7 @@ export default function ScannerSection({ onAnalyze, isAnalyzing, isModalOpen }) 
           onClick={() => handleTabChange('text')}
         >
           <Edit3 size={16} />
-          <span>Quick Test</span>
+          <span>Text Input</span>
         </button>
 
         <button 
@@ -437,30 +385,6 @@ export default function ScannerSection({ onAnalyze, isAnalyzing, isModalOpen }) 
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
         />
-
-        {/* Quick Sample Presets */}
-        <div>
-          <span style={{ fontSize: '0.74rem', fontWeight: 600, color: 'var(--text-muted)' }}>
-            Quick Test Presets:
-          </span>
-          <div className="sample-prompts" style={{ marginTop: '6px' }}>
-            {SAMPLE_PRESETS.map((sample, idx) => (
-              <button
-                key={idx}
-                type="button"
-                className="sample-chip"
-                onClick={() => {
-                  setInputText(sample.text);
-                  setAiSuccessBadge('');
-                  onAnalyze(sample.text);
-                }}
-              >
-                <Sparkles size={11} style={{ marginRight: '4px', verticalAlign: 'middle' }} />
-                <span>{sample.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Main Scan Button */}
@@ -482,95 +406,6 @@ export default function ScannerSection({ onAnalyze, isAnalyzing, isModalOpen }) 
           </>
         )}
       </button>
-
-      {/* AI Key Configuration Modal */}
-      {showKeyModal && (
-        <div className="modal-overlay" onClick={() => setShowKeyModal(false)}>
-          <div className="modal-sheet" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '480px' }}>
-            <div className="modal-header">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Key size={18} color="var(--brand-primary)" />
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-main)', fontFamily: 'var(--font-heading)' }}>
-                  AI Vision API Key
-                </h3>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowKeyModal(false)}
-                style={{ color: 'var(--text-muted)', padding: '6px', borderRadius: '50%' }}
-                aria-label="Close"
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            <div className="modal-body" style={{ gap: '14px' }}>
-              <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', lineHeight: 1.45 }}>
-                SafeBite uses Multimodal AI to read curved grocery packaging and extract ingredients instantly.
-              </p>
-
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <button
-                  type="button"
-                  className={`toggle-chip ${providerChoice === 'gemini' ? 'selected' : ''}`}
-                  onClick={() => setProviderChoice('gemini')}
-                  style={{ flex: 1, justifyContent: 'center' }}
-                >
-                  <span>Google Gemini (Free)</span>
-                </button>
-                <button
-                  type="button"
-                  className={`toggle-chip ${providerChoice === 'openai' ? 'selected' : ''}`}
-                  onClick={() => setProviderChoice('openai')}
-                  style={{ flex: 1, justifyContent: 'center' }}
-                >
-                  <span>OpenAI GPT-4o</span>
-                </button>
-              </div>
-
-              <div>
-                <label style={{ fontSize: '0.76rem', fontWeight: 700, color: 'var(--text-main)', textTransform: 'uppercase' }}>
-                  {providerChoice === 'gemini' ? 'Gemini API Key (AIza...)' : 'OpenAI API Key (sk-...)'}
-                </label>
-                <input
-                  type="password"
-                  className="text-input-box"
-                  placeholder={providerChoice === 'gemini' ? 'Paste AIzaSy... here' : 'Paste sk-... here'}
-                  value={keyInput}
-                  onChange={(e) => setKeyInput(e.target.value)}
-                  style={{ minHeight: '44px', marginTop: '6px' }}
-                />
-              </div>
-
-              <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
-                💡 <strong>Tip:</strong> You can also paste your key directly into the <code style={{ background: 'var(--bg-subtle)', padding: '2px 4px', borderRadius: '4px' }}>.env</code> file:
-                <br />
-                <code style={{ display: 'block', background: 'var(--bg-subtle)', padding: '6px 8px', borderRadius: '4px', marginTop: '4px', wordBreak: 'break-all' }}>
-                  {providerChoice === 'gemini' ? 'VITE_GEMINI_API_KEY=your_key' : 'VITE_OPENAI_API_KEY=your_key'}
-                </code>
-              </div>
-            </div>
-
-            <div className="modal-footer">
-              <button
-                type="button"
-                onClick={() => setShowKeyModal(false)}
-                style={{ padding: '8px 14px', fontSize: '0.84rem', color: 'var(--text-secondary)' }}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="btn-primary-action"
-                onClick={handleSaveApiKey}
-                style={{ width: 'auto', padding: '8px 18px', fontSize: '0.86rem' }}
-              >
-                Save & Activate
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
