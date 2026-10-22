@@ -58,11 +58,11 @@ export function saveLocalApiKey(provider, key) {
 }
 
 /**
- * Calls Google Gemini Vision API (gemini-1.5-flash / gemini-2.0-flash)
+ * Calls Google Gemini Vision API with automatic model fallback
  */
 async function extractWithGemini(base64Data, mimeType, apiKey) {
-  // Use gemini-1.5-flash for reliable fast multimodal processing
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  // Ordered by active availability and speed
+  const candidateModels = ['gemini-3.5-flash', 'gemini-3.8-flash', 'gemini-flash-latest'];
 
   const payload = {
     contents: [
@@ -84,44 +84,70 @@ async function extractWithGemini(base64Data, mimeType, apiKey) {
     }
   };
 
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
+  let lastError = null;
 
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.error?.message || `Gemini API returned status ${response.status}`);
+  for (const model of candidateModels) {
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        const errMsg = errorData.error?.message || `Gemini API returned status ${response.status}`;
+        lastError = new Error(errMsg);
+        // If 404 (model not found) or 503 (temporary spike), continue to fallback model
+        if (response.status === 404 || response.status === 503) {
+          console.warn(`Model ${model} unavailable (${response.status}), trying fallback...`);
+          continue;
+        }
+        throw lastError;
+      }
+
+      const result = await response.json();
+      const candidate = result.candidates?.[0];
+      const textOutput = candidate?.content?.parts?.find(p => p.text)?.text || candidate?.content?.parts?.[0]?.text;
+
+      if (!textOutput) {
+        throw new Error('No text output returned by Gemini Vision.');
+      }
+
+      try {
+        let cleanText = textOutput.trim();
+        if (cleanText.startsWith('```json')) {
+          cleanText = cleanText.replace(/^```json\s*/, '').replace(/```\s*$/, '');
+        } else if (cleanText.startsWith('```')) {
+          cleanText = cleanText.replace(/^```\s*/, '').replace(/```\s*$/, '');
+        }
+
+        const parsed = JSON.parse(cleanText);
+        return {
+          success: true,
+          ingredientsText: parsed.ingredients_text || '',
+          detectedAllergens: parsed.detected_allergens || [],
+          confidenceScore: parsed.confidence_score || 90,
+          summary: parsed.summary || 'Ingredients extracted successfully.',
+          provider: 'Google Gemini'
+        };
+      } catch {
+        return {
+          success: true,
+          ingredientsText: textOutput,
+          detectedAllergens: [],
+          confidenceScore: 80,
+          summary: 'Extracted text returned in raw format.',
+          provider: 'Google Gemini'
+        };
+      }
+    } catch (err) {
+      lastError = err;
+    }
   }
 
-  const result = await response.json();
-  const textOutput = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-  if (!textOutput) {
-    throw new Error('No text output returned by Gemini Vision.');
-  }
-
-  try {
-    const parsed = JSON.parse(textOutput);
-    return {
-      success: true,
-      ingredientsText: parsed.ingredients_text || '',
-      detectedAllergens: parsed.detected_allergens || [],
-      confidenceScore: parsed.confidence_score || 90,
-      summary: parsed.summary || 'Ingredients extracted successfully.',
-      provider: 'Google Gemini'
-    };
-  } catch {
-    return {
-      success: true,
-      ingredientsText: textOutput,
-      detectedAllergens: [],
-      confidenceScore: 80,
-      summary: 'Extracted text returned in raw format.',
-      provider: 'Google Gemini'
-    };
-  }
+  throw lastError || new Error('All Gemini Vision model endpoints failed.');
 }
 
 /**

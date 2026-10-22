@@ -27,22 +27,69 @@ export default function ScannerSection({ onAnalyze, isAnalyzing, isModalOpen }) 
     setIsStartingCamera(true);
 
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'environment' }
-      });
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Camera access is not supported by your browser.');
+      }
+
+      let stream;
+      try {
+        // Try environment-facing (rear) camera with fallback-safe ideal constraints
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: { ideal: 'environment' },
+            width: { ideal: 1920 },
+            height: { ideal: 1080 }
+          },
+          audio: false
+        });
+      } catch (constraintErr) {
+        console.warn('Ideal rear camera constraint failed, falling back to default webcam:', constraintErr);
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false
+        });
+      }
+
       streamRef.current = stream;
+
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
+        videoRef.current.muted = true;
+        try {
+          await videoRef.current.play();
+        } catch (playErr) {
+          console.warn('video.play() notice:', playErr);
+        }
       }
+
       setCameraActive(true);
     } catch (err) {
       console.warn('Camera access denied or unavailable:', err);
-      setCameraError('Unable to access camera. Please allow camera permissions or upload an image.');
+      let errorMsg = 'Unable to access camera. Please allow camera permissions or upload an image.';
+      if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+        errorMsg = 'Camera permission was denied. Please allow camera access in your browser address bar.';
+      } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+        errorMsg = 'No camera device detected on your system.';
+      } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+        errorMsg = 'Camera is already in use by another application.';
+      }
+      setCameraError(errorMsg);
       setCameraActive(false);
     } finally {
       setIsStartingCamera(false);
     }
   };
+
+  // Keep video element synchronized with active stream
+  useEffect(() => {
+    if (cameraActive && streamRef.current && videoRef.current) {
+      if (videoRef.current.srcObject !== streamRef.current) {
+        videoRef.current.srcObject = streamRef.current;
+      }
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(err => console.warn('Sync video play notice:', err));
+    }
+  }, [cameraActive]);
 
   const stopCamera = () => {
     if (streamRef.current) {
@@ -223,23 +270,6 @@ export default function ScannerSection({ onAnalyze, isAnalyzing, isModalOpen }) 
             <AlertCircle size={16} color="var(--danger-primary)" />
             <span>{aiError}</span>
           </div>
-          {!aiConfig.provider && (
-            <button
-              type="button"
-              onClick={() => setShowKeyModal(true)}
-              style={{
-                fontSize: '0.74rem',
-                fontWeight: 700,
-                color: 'var(--brand-primary)',
-                background: '#FFFFFF',
-                padding: '4px 8px',
-                borderRadius: '4px',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              Add Key
-            </button>
-          )}
         </div>
       )}
 
@@ -247,14 +277,20 @@ export default function ScannerSection({ onAnalyze, isAnalyzing, isModalOpen }) 
       {activeTab === 'camera' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <div className="camera-view-box">
+            <video 
+              ref={videoRef} 
+              autoPlay 
+              playsInline 
+              muted 
+              className="camera-video"
+              style={{ display: cameraActive ? 'block' : 'none' }}
+            />
+
             {cameraActive ? (
-              <>
-                <video ref={videoRef} autoPlay playsInline className="camera-video" />
-                <div className="camera-guide-overlay">
-                  <div className="scanner-laser" />
-                  <span className="camera-guide-text">Align ingredients text within frame</span>
-                </div>
-              </>
+              <div className="camera-guide-overlay">
+                <div className="scanner-laser" />
+                <span className="camera-guide-text">Align ingredients text within frame</span>
+              </div>
             ) : isStartingCamera ? (
               <div style={{ textAlign: 'center', color: '#9CA3AF', padding: '28px 16px' }}>
                 <RefreshCw size={36} className="spin" style={{ margin: '0 auto 10px', color: 'var(--brand-primary)' }} />

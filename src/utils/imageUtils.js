@@ -10,8 +10,34 @@
  * @returns {Promise<{ dataUrl: string, base64Data: string, mimeType: string }>}
  */
 export async function captureVideoFrame(videoElement, maxWidth = 1200) {
-  if (!videoElement || videoElement.readyState < 2) {
-    throw new Error('Video stream is not ready for frame capture.');
+  if (!videoElement) {
+    throw new Error('Video stream element not found.');
+  }
+
+  // If video is still initializing or buffering, wait briefly for frame data to become available
+  if (videoElement.readyState < 2) {
+    await new Promise((resolve, reject) => {
+      let settled = false;
+
+      const timer = setTimeout(() => {
+        if (!settled) {
+          settled = true;
+          if (videoElement.readyState >= 2) {
+            resolve();
+          } else {
+            reject(new Error('Video stream is not ready for frame capture. Please ensure camera is active and try again.'));
+          }
+        }
+      }, 1500);
+
+      videoElement.onloadeddata = () => {
+        if (!settled) {
+          settled = true;
+          clearTimeout(timer);
+          resolve();
+        }
+      };
+    });
   }
 
   const origWidth = videoElement.videoWidth || 640;
